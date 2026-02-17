@@ -1,0 +1,20 @@
+@import "./App.css";
+
+
+:root {
+  --bg: #1A1A1D;
+  --surface: #3B1C32;
+  --primary: #6A1E55;
+  --accent: #A64D79;
+  --text: #ffffff;
+  --border: rgba(255,255,255,0.15);
+
+  --radius: 16px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, sans-serif;
+}
