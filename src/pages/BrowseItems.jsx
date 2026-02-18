@@ -2,6 +2,8 @@ import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import ReportModal from "../components/ReportModal";
+import ItemDetailModal from "../components/ItemDetailModal";
+
 
 
 const ITEMS = [
@@ -60,6 +62,7 @@ const ITEMS = [
 export default function BrowseItems() {
   const [reportOpen, setReportOpen] = useState(false);
   const [reportType, setReportType] = useState("lost"); // "lost" | "found"
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const navigate = useNavigate();
   const [q, setQ] = useState("");
@@ -204,28 +207,37 @@ export default function BrowseItems() {
 
       {/* Cards */}
       <section className="browseGridSection">
-        <div className="container itemsGrid">
-          {filtered.map((it) => (
-            <article key={it.id} className="itemCard">
-              <img className="itemImg" src={it.image} alt={it.title} />
-              <div className="itemBody">
-                <div className="itemTop">
-                  <h3 className="itemTitle">{it.title}</h3>
-                  <span className={`badge ${it.status}`}>{it.status === "lost" ? "Lost" : "Found"}</span>
-                </div>
+  <div className="container itemsGrid">
+    {filtered.map((it) => (
+      <article
+        key={it.id}
+        className="itemCard"
+        onClick={() => setSelectedItem(it)}
+        style={{ cursor: "pointer" }}
+      >
+        <img className="itemImg" src={it.image} alt={it.title} />
 
-                <p className="itemDesc">{it.desc}</p>
+        <div className="itemBody">
+          <div className="itemTop">
+            <h3 className="itemTitle">{it.title}</h3>
+            <span className={`badge ${it.status}`}>
+              {it.status === "lost" ? "Lost" : "Found"}
+            </span>
+          </div>
 
-                <div className="meta">
-                  <div className="metaRow">📍 {it.location}</div>
-                  <div className="metaRow">📅 {it.date}</div>
-                  <div className="metaRow">🏷 {it.category}</div>
-                </div>
-              </div>
-            </article>
-          ))}
+          <p className="itemDesc">{it.desc}</p>
+
+          <div className="meta">
+            <div className="metaRow">📍 {it.location}</div>
+            <div className="metaRow">📅 {it.date}</div>
+            <div className="metaRow">🏷 {it.category}</div>
+          </div>
         </div>
-      </section>
+      </article>
+    ))}
+  </div>
+</section>
+
 
       <footer className="browseFooter">
   <div className="browseFooterInner">
@@ -249,6 +261,12 @@ export default function BrowseItems() {
       console.log(data);
       setReportOpen(false);
     }}
+  />
+)}
+    {selectedItem && (
+  <ItemDetailModal
+    item={selectedItem}
+    onClose={() => setSelectedItem(null)}
   />
 )}
 

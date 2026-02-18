@@ -632,8 +632,13 @@
   border: 1px solid var(--border);
   background: rgba(0,0,0,0.22);
   color: rgba(255,255,255,0.85);
-  padding: 0 12px;
+  padding: 10px 40px 10px 14px;
   outline: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 /* stats */
@@ -879,4 +884,223 @@
 @media (max-width: 520px){
   .modalActions{ grid-template-columns: 1fr; }
   .modalCard{ max-height: 82vh; }
+}
+.modalOverlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.modalCard{
+  width: min(720px, 95vw);
+  max-height: 90vh;
+  overflow: auto;
+  background: rgba(20,20,24,0.95);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  position: relative;
+}
+
+.modalClose{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.modalImg{
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+
+.modalTitle{ margin: 0 0 8px; }
+.modalDesc{ color: rgba(255,255,255,0.8); margin: 0 0 12px; }
+
+.modalMeta{
+  display: grid;
+  gap: 8px;
+  color: rgba(255,255,255,0.85);
+}
+/* ===== Item Detail Modal ===== */
+.modalOverlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  z-index: 2000;
+}
+
+.modalCard{
+  width: min(820px, 96vw);
+  max-height: 88vh;
+  overflow: auto;
+  background: rgba(25,25,30,0.95);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.55);
+  position: relative;
+  padding: 18px;
+}
+
+.modalClose{
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.detailHeader{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 6px 6px 14px;
+}
+
+.detailTitle{
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.detailSub{
+  margin-top: 6px;
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.detailBadge{
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+}
+
+.detailBadge.lost{ background: rgba(220, 38, 38, 0.25); border-color: rgba(220,38,38,0.35); }
+.detailBadge.found{ background: rgba(16, 185, 129, 0.20); border-color: rgba(16,185,129,0.30); }
+
+.detailImgWrap{
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.detailImg{
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.detailSectionTitle{
+  margin: 16px 6px 10px;
+  font-size: 18px;
+}
+
+.detailDescFull{
+  margin: 0 6px 12px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+}
+
+.detailGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 0 6px 8px;
+}
+
+.detailCell{
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.detailLabel{
+  color: rgba(255,255,255,0.65);
+  font-weight: 800;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.detailValue{
+  font-weight: 800;
+}
+
+.detailActions{
+  display: grid;
+  gap: 10px;
+  margin: 0 6px 8px;
+}
+
+.detailActionBtn{
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.detailActionBtn:hover{
+  background: rgba(255,255,255,0.1);
+}
+
+/* Responsive modal */
+@media (max-width: 560px){
+  .detailImg{ height: 220px; }
+  .detailGrid{ grid-template-columns: 1fr; }
+  .detailTitle{ font-size: 22px; }
+}
+/* ===== Custom Scrollbar (Modal Only) ===== */
+.modalCard {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.25) transparent;
+}
+
+/* Chrome / Edge / Safari */
+.modalCard::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modalCard::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modalCard::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.25);
+  border-radius: 10px;
+}
+
+.modalCard::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.4);
 }
